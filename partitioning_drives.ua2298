@@ -1,0 +1,20 @@
+#------Partitioning any drive--------------#
+.1 Plug the drive in the pi
+.2 run "sudo parted"
+.3 run "print all"
+  you will find your drive named /dev/sdx
+.4 run "select /dev/sdx"
+.5 run "print"
+  to confirm that we have chosen the right drive
+.6 run "mklabel gpt"
+  if prompt come say yes to that
+.7 run "mkpart"
+  give the data as 
+    partition name : os
+    file system type :ext4
+    start? 0gb
+    end? 100%
+.8 now exit, its done now we need to format
+.9 run "sudo mkfs.ext4 /dev/sdx1"   //ext4 for ext4 file system, every file system has its own command
+
+Now its done!!
