@@ -1,0 +1,40 @@
+wifi setup static
+  type ifconfig
+  note your ip address and mask
+  type route -n 
+  note your gateway
+  open /etc/network/interfaces
+  add the command :
+    
+          # This file describes the network interfaces available on your system
+          # and how to activate them. For more information, see interfaces(5).
+      
+          source /etc/network/interfaces.d/*
+      
+          # The loopback network interface
+          auto lo
+          iface lo inet loopback
+      
+          auto wlan0
+          allow-hotplug wlan0
+          iface wlan0 inet static
+          address 10.42.0.xx
+          netmask 255.255.255.0
+          gateway 10.42.0.1
+          
+          wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+          iface default inet dhcp
+    
+  now save the file
+  open /etc/wpa_supplicant/wpa_supplicant.conf
+  add the command:
+  
+          ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+          update_config=1
+        
+          network={
+                ssid="Your network ssid"
+                psk="password of your network"
+          }
+  now save and exit
+  use usb wifi dongle for wireless access of your pi
