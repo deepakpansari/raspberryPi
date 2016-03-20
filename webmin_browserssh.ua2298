@@ -1,0 +1,13 @@
+#------webmin is a package that is used for controlling your pi over a browser----------#
+.1 run "sudo nano /etc/apt/sources.list.d/webmin.list"
+.2 add the line in that
+        deb http://download.webmin.com/download/repository sarge contrib
+        deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+.3 run "sudo su"
+.4 run "cd /root"
+.5 run "wget http://www.webmin.com/jcameron-key.asc"
+.6 run "apt-key add jcameron-key.asc"
+.7 run "apt-get update"
+.8 run "apt-get install webmin"
+.9 open your browser and type "https://yourIpAddress:10000/"
+.10 give your username and password and it will work :)
