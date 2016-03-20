@@ -1,0 +1,7 @@
+#----------------- Raspberry pi setup ----------------------#
+
+.1 in the /etc folder program keeps there configration file
+.2 sudo is "sustitute user do" in which the deault user is root
+.3 apt is the package manager in linux 
+.4  ssh is secure shell hashing
+.5
