@@ -1,0 +1,19 @@
+#---------Today we will boot Raspberry pi from external drive----------#
+.1 run "sudo touch /forcefsck"
+.2 run "sudo reboot"
+    after reboot check the containt of root file system now that file does not exist
+.3 burn the raspbian image into your drive
+.4 put drive into pi
+.5 run "sudo gdisk /dev/sda"
+.6 run "i"
+.7 run "2"  //first check which partition of your hard drive is having the root file system(in my case it is sda2)
+    now not down the GUID 
+.8 exit the gdisk
+.9 run "sudo nano /boot/cmdline.txt"
+.10 make
+    root=PARTUUID=put_the_guid_here
+    in the end of line add rootdelay=5
+.11 now reboot it all done
+
+Warning : before doint this first gothrougt partitioning_drives.ua2298
+
