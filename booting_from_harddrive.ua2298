@@ -13,4 +13,6 @@
 .8 now reboot it all done
 
 Warning : before doint this first gothrougt partitioning_drives.ua2298
+incase UUID of the card and HardDrive seems same then change UUID of Drive by the command
+    tune2fs /dev/{device} -U {uuid}
 
