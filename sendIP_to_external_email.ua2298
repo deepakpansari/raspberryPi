@@ -1,0 +1,53 @@
+from urllib.request import urlopen
+import re
+import os
+import smtplib
+import subprocess
+
+# Setting up credencials
+from_address = "deepakpansari.ua2298@gmail.com"
+to_address = "deepakpansari.ua2298@gmail.com"
+subject = 'current Ip address'
+username = 'deepakpansari.ua2298'
+password = 'loveinrain_UA22'
+
+# External Ip setup
+url = 'http://checkip.dyndns.org'
+
+#open the url and take away the ip address
+request = urlopen(url).read().decode('utf-8')
+
+#extract ip address
+ourIp = re.findall("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", request)
+
+#getting Local Ip address
+localIp = str(subprocess.check_output("ifconfig", shell=True))
+localIp = re.findall("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", localIp)
+print(localIp)
+#function for sending Email
+def sendEmail(ourIp,localIp):
+  # Body of the Email
+  bodyTxt = "External IP address is : \n\n"+str(ourIp)+"\n\nLocalIp address :\n\n"+str(localIp)
+
+  #actually send email
+  server = smtplib.SMTP('smtp.gmail.com',587)
+  server.ehlo()
+  server.starttls()
+  server.ehlo()
+  server.login(from_address, password)
+  msg = "\r\n".join(["from: %s" % from_address,"subject: %s" % subject,"to: %s" % to_address,"mime-version: 1.0","content-type: text/html"])
+  content = msg + "\r\n\r\n" + bodyTxt
+  server.sendmail(from_address, to_address, content)
+  server.quit()
+  print("Email has been send!")
+
+#sending the mail
+sendEmail(ourIp,localIp)
+
+
+
+-------------------------------------------------------------------------------------------------------------
+1. save this code and run but before this enable your account for low sucurity app
+  goto :"https://www.google.com/settings/security/lesssecureapps"
+  
+2. run it automatically by adding a shript command  in /etc/rc.local file
